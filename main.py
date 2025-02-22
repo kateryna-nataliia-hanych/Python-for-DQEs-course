@@ -32,12 +32,11 @@ for i in range(0, size_of_list):
         if l[j] > l[j + 1]:
             l[j], l[j + 1] = l[j + 1], l[j]
 
-print('Sorted list:\n',l)
+print('Sorted list:\n', l)
 
-list_even = []
-even_sum = 0
-list_odd = []
-odd_sum = 0
+list_even, list_odd = [], []  # or list_even = list_odd = []
+even_sum, odd_sum = 0, 0  # even_sum = odd_sum = 0
+
 
 for i in range(0, size_of_list):
     if l[i] % 2 == 0:
@@ -47,12 +46,12 @@ for i in range(0, size_of_list):
         list_odd.append(l[i])
         odd_sum += l[i]
 
-print('Even numbers list:\n',list_even)
+print('Even numbers list:\n', list_even)
 
-print('Average for even numbers list:\n',round(even_sum / len(list_even)))
+print('Average for even numbers list:\n', round(even_sum / len(list_even)))
 
 print('Odd numbers list:\n',list_odd)
 
-print('Average for odd numbers list:\n',round(odd_sum / len(list_odd)))
+print('Average for odd numbers list:\n', round(odd_sum / len(list_odd)))
 
 
