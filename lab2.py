@@ -38,3 +38,4 @@ for index, dict in enumerate(list, 1):
 merged_dict = {k + f"_{v[1]}": v[0] for k, v in common_dict.items()}
 
 print("Merged dictionary with updated keys and max value:\n", merged_dict)
+
