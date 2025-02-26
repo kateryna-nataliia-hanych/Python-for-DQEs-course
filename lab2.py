@@ -2,40 +2,41 @@ import random
 import string
 
 # generate random number of dicts in list
-num_dicts = random.randrange(2, 11)
-print(num_dicts)
+def generate_random_dicts(start, stop):
+    num_dicts = random.randint(start, stop)
+    print(num_dicts)
 
-list = []
-for i in range(num_dicts):
-    dict = {}
-    # generate dictionary with random number of keys
-    for key in range(random.randrange(1, 11)):
-        dict[random.choice(string.ascii_lowercase)] = random.randrange(0, 101)
+    list = []
+    for i in range(num_dicts):
+        # generate dictionary with random number of keys
+        dict = {random.choice(string.ascii_lowercase): random.randint(0, 100) for _ in range(random.randint(1, 10))}
 
-    list.append(dict)
+        print(f"Random {i + 1} dictionary", dict)
 
-    print(f"Random {i+1} dictionary", dict)
-# list = [{'a': 5, 'b': 7, 'K':10, 'g': 11}, {'a': 3, 'c': 35, 'g': 42}, {'a': 10, 'c': 35, 'g': 52}]
+        list.append(dict)
 
-print("List with random dictionaries:\n", list)
+    return list
 
-common_dict = {}
-for index, dict in enumerate(list, 1):
 
-    for key, value in dict.items():
+def merging_dicts(list_dicts):
+    common_dict = {}
+    for index, dict in enumerate(list, 1):
 
-        if key in common_dict:
+        for key, value in dict.items():
 
-            if value > common_dict[key][0]:
+            if key in common_dict:
+                if value > common_dict[key][0]:
+                    common_dict[key] = (value, index)
+                elif value == common_dict[key][0]:
+                    continue
+            else:
                 common_dict[key] = (value, index)
-            elif value == common_dict[key][0]:
-                continue
 
-        else:
+    merged_dict = {k + f"_{v[1]}": v[0] for k, v in common_dict.items()}
+    return merged_dict
 
-            common_dict[key] = (value, index)
 
-merged_dict = {k + f"_{v[1]}": v[0] for k, v in common_dict.items()}
-
-print("Merged dictionary with updated keys and max value:\n", merged_dict)
-
+list = generate_random_dicts(2, 10)
+merged_dict = merging_dicts(list)
+print(f"List with random dictionaries:\n {list}")
+print(f"Merged dictionary with updated keys and max value:\n {merged_dict}")
