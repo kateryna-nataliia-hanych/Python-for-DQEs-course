@@ -20,7 +20,14 @@ text = """homEwork:
 
 # Normalization of text
 def normalize_case(txt):
-    normalized_text = txt.lower()
+    lower_text_without_odd_whitespaces = re.sub(r"\s+", " ", txt.lower())
+    sentences = re.split(r'([\.\?!] ?)', lower_text_without_odd_whitespaces)
+    # print(sentences)
+    capitalized_sentences = [sentence.strip().capitalize() for sentence in sentences if sentence.strip()]
+    # print(capitalized_sentences)
+    normalized_text = ''.join([i if i not in '.!?' else i+' ' for i in capitalized_sentences ])
+    # print(normalized_text)
+
     return normalized_text
 
 
@@ -35,8 +42,8 @@ def create_new_sentence_from_last_words(txt):
     # print(splitted_text)
     last_words = [sentence.split()[-1] for sentence in splitted_text if
                   len(sentence) != 0 and sentence not in string.whitespace]
-    new_line = ' '.join(last_words)
-    return new_line
+    new_line = ' '.join(last_words) + '. '
+    return new_line.capitalize()
 
 
 def replace_words(replace_from, replace_to, txt):
@@ -50,20 +57,21 @@ def add_new_sentence_after_smth(what_add, after_what_add, txt):
     return txt[:x.span()[1]+1] + what_add + txt[x.span()[1]+1:]
 
 
-norm_text = normalize_case(text)
-# print(f"Normalized text:\n{norm_text}")
+if __name__ == '__main__':
+    whitespace_count = count_whitespaces(text)
+    print(f"Number of whitespaces in this text is {whitespace_count}")
 
-whitespace_count = count_whitespaces(norm_text)
-print(f"Number of whitespaces in this text is {whitespace_count}")
+    norm_text = normalize_case(text)
+    # print(f"Normalized text:\n{norm_text}")
 
-new_sentence = create_new_sentence_from_last_words(norm_text)
-# Sentence with last words of each existing sentence
-print(f"Sentence with last words of each existing sentence: {new_sentence}.")
+    new_sentence = create_new_sentence_from_last_words(norm_text)
+    # Sentence with last words of each existing sentence
+    print(f"Sentence with last words of each existing sentence: {new_sentence}")
 
-# Replacing iz with is
-replaced_text = replace_words(' iz ', ' is ', norm_text)
-# print(replaced_text)
+    # Replacing iz with is
+    replaced_text = replace_words(' iz ', ' is ', norm_text)
+    # print(replaced_text)
 
-updated_text = add_new_sentence_after_smth(new_sentence, 'paragraph.', replaced_text)
-print(updated_text)
+    updated_text = add_new_sentence_after_smth(new_sentence, 'paragraph.', replaced_text)
+    print(updated_text)
 
