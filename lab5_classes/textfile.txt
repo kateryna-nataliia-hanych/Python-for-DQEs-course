@@ -1,0 +1,9 @@
+news
+"It is
+a multiline text
+for the news" "London"
+
+
+private AD
+"I sell a motorbike" "2025/06/07"
+

@@ -1,0 +1,14 @@
+{
+ "data":[
+   {
+     "type": "news",
+     "text": "text news",
+     "city": "city json"
+   },
+   {
+     "type": "private ad",
+     "text": "text private ad",
+     "date": "2025/06/06"
+   }
+ ]
+}

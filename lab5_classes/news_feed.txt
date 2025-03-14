@@ -1,0 +1,44 @@
+News-----
+It is a multiline text for the news, 
+London, 2025-03-14
+                              
+Private Ad-----
+I sell a motorbike, 
+2025/06/07, 85 days left
+                              
+News-----
+text news, 
+city json, 2025-03-14
+                              
+Private Ad-----
+text private ad, 
+2025/06/06, 84 days left
+                              
+News-----
+text news, 
+city json, 2025-03-14
+                              
+Private Ad-----
+text private ad, 
+2025/06/06, 84 days left
+                              
+News-----
+It is a multiline text for the news, 
+London, 2025-03-14
+                              
+Private Ad-----
+I sell a motorbike, 
+2025/06/07, 85 days left
+                              
+Private Ad-----
+text private ad, 
+2025/06/09, 87 days left
+                              
+News-----
+It is a multiline text for the news, 
+London, 2025-03-14
+                              
+Private Ad-----
+I sell a motorbike, 
+2025/06/07, 85 days left
+                              

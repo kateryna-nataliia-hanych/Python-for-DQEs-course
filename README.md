@@ -48,7 +48,7 @@ You need to implement:
 1. News – text and city as input. Date is calculated during publishing. 
 2. Private ad – text and expiration date as input. Day left is calculated during publishing.
 
-Expand with additional class, which allow to provide records by text file:
+Expand with additional classses, which allow to provide records by text file and JSON file:
 1. Define your input format (one or many records)
 2. Default folder or user provided file path
 3. Remove file if it was successfully processed
@@ -62,6 +62,9 @@ Create two csv:
 2. letter, cout_all, count_uppercase, percentage (add header, spacecharacters are not included)
 
 CSVs should be recreated each time new record added.
+
+
+
 
 
 
