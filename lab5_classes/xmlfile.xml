@@ -1,0 +1,10 @@
+<news-feed>
+    <publication type="news">
+        <text>some text</text>
+        <city>Lviv</city>
+    </publication>
+    <publication type="private ad">
+        <text>I don't sell something</text>
+        <expiration-date>2025/06/09</expiration-date>
+    </publication>
+</news-feed>

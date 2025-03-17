@@ -59,6 +59,7 @@ class ReadFromJsonFile(ReadFromTxtFile):
                     sections.append(self.parse_section(content))
 
             ReadFromTxtFile.remove_file(self)
+
             return sections
 
         except Exception as e:

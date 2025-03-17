@@ -1,6 +1,7 @@
 import sys
 from my_classes.class_ReadFromTxtFile import ReadFromTxtFile
 from my_classes.class_ReadFromJsonFile import ReadFromJsonFile
+from my_classes.class_ReadFromXmlFile import ReadFromXmlFile
 from my_classes.class_PrivateAd import PrivateAd
 from my_classes.class_News import News
 
@@ -14,6 +15,9 @@ def read_news_feed(file_path):
     elif file_path.endswith('.json'.lower()):
         read_json_obj = ReadFromJsonFile(file_path)
         inputs = read_json_obj.parse_file()
+    elif file_path.endswith('.xml'.lower()):
+        read_xml_obj = ReadFromXmlFile(file_path)
+        inputs = read_xml_obj.parse_file()
 
     if inputs:
         for item in inputs:
@@ -45,7 +49,7 @@ def enter_from_console():
 
 def choice_if_no_parameter():
     type_of_input = input(
-        "Do you like to enter the path file or enter from console? (1 or 2)?\n")
+        "Do you like to enter the path file (txt/json/xml) or enter from console? (1 or 2)?\n")
     if type_of_input == '1':
         file_path = input("Please, enter the path to the file:\n")
         read_news_feed(file_path)

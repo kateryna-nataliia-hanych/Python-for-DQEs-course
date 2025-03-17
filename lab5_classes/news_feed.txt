@@ -42,3 +42,19 @@ Private Ad-----
 I sell a motorbike, 
 2025/06/07, 85 days left
                               
+News-----
+some text, 
+Lviv, 2025-03-17
+                              
+Private Ad-----
+I don't sell something, 
+2025/06/09, 84 days left
+                              
+News-----
+some text, 
+Lviv, 2025-03-17
+                              
+Private Ad-----
+I don't sell something, 
+2025/06/09, 84 days left
+                              
