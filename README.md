@@ -63,6 +63,11 @@ Create two csv:
 
 CSVs should be recreated each time new record added.
 
+Expand with additional class, which allow to save records into database:
+
+1. Different types of records require different data tables
+2. New record creates new row in data table
+3. Implement “no duplicate” check.
 
 
 
