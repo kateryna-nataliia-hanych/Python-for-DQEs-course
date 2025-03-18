@@ -1,9 +1,6 @@
 news
-"It is
-a multiline text
-for the news" "London"
+"some
+text" "city"
 
-
-private AD
-"I sell a motorbike" "2025/06/07"
-
+private ad
+"text" "2025/12/30"

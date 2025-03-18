@@ -22,3 +22,5 @@ class News(NewsFeed):
     def calculate_date():
         return datetime.now().date()
 
+    def news_content_to_db(self):
+        return self.text, self.city, self.date

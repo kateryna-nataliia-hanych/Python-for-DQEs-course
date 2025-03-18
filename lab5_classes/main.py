@@ -1,9 +1,11 @@
 import sys
+from datetime import datetime
 from my_classes.class_ReadFromTxtFile import ReadFromTxtFile
 from my_classes.class_ReadFromJsonFile import ReadFromJsonFile
 from my_classes.class_ReadFromXmlFile import ReadFromXmlFile
 from my_classes.class_PrivateAd import PrivateAd
 from my_classes.class_News import News
+from my_classes.class_DBConnection import DBConnection
 
 
 # Read news feed from file
@@ -20,25 +22,58 @@ def read_news_feed(file_path):
         inputs = read_xml_obj.parse_file()
 
     if inputs:
+        dbc = DBConnection('news_feed.db')
         for item in inputs:
             for type, content in item.items():
                 if type == 'news':
+
+                    # save to db table news
+                    dbc.create_table('news', ('id', 'INTEGER PRIMARY KEY'), ('text', 'TEXT'), ('city', 'TEXT'),
+                                     ('date', 'DATE'))
+                    if dbc.check_duplication('news', ['text', 'city'], text = content["text"], city = content["city"]) is False:
+                        dbc.insert('news', text = content["text"], city = content["city"], date= datetime.now().strftime('%Y/%m/%d'))
+
                     news = News(content["text"], content["city"])
                     news.save_to_file(news.__str__())
+
                 elif type == 'private ad':
+
+                    # save to db table ads
+                    dbc.create_table('ads', ('id', 'INTEGER PRIMARY KEY'), ('text', 'TEXT'), ('expiration_date', 'DATE'))
+                    if dbc.check_duplication('ads', ['text'], text=content["text"],
+                                             expiration_date=content["date"]) is False:
+                        dbc.insert('ads', text=content["text"], expiration_date=content["date"])
+
                     ad = PrivateAd(content["text"], content["date"])
                     ad.save_to_file(ad.__str__())
 
 
 def enter_from_console():
+    dbc = DBConnection('news_feed.db')
     type_feed = input(
         "What category would you like to add? news(1), private ad(2) or search job(3)? Type the number \n")
     if int(type_feed) == 1:
         news = News.input_data()
         news.save_to_file(news.__str__())
+
+        #     save data to news table in DB
+        dbc.create_table('news', ('id', 'INTEGER PRIMARY KEY'), ('text', 'TEXT'), ('city', 'TEXT'),
+                         ('date', 'DATE'))
+        text, city, date = news.news_content_to_db()
+        if dbc.check_duplication('news', ['text', 'city'], text=text, city=city) is False:
+            dbc.insert('news', text=text, city=city, date=date.strftime('%Y/%m/%d'))
+
     elif int(type_feed) == 2:
         ad = PrivateAd.input_data()
         ad.save_to_file(ad.__str__())
+
+        # save to db table ads
+        dbc.create_table('ads', ('id', 'INTEGER PRIMARY KEY'), ('text', 'TEXT'), ('expiration_date', 'DATE'))
+        text, exp_date = ad.ads_content_to_db()
+        if dbc.check_duplication('ads', ['text'], text=text,
+                                 expiration_date=exp_date) is False:
+            dbc.insert('ads', text=text, expiration_date=exp_date)
+
     elif int(type_feed) == 3:
         # job_search = SearchJob.input_data()
         # print(job_search)

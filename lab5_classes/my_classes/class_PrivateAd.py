@@ -39,3 +39,6 @@ class PrivateAd(NewsFeed):
         exp_date_object = datetime.strptime(self.exp_date, "%Y/%m/%d")
         now_date_object = datetime.strptime(str(now), "%Y-%m-%d")
         return (exp_date_object - now_date_object).days
+
+    def ads_content_to_db(self):
+        return self.text, self.exp_date
